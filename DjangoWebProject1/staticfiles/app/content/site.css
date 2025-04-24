@@ -1,0 +1,252 @@
+body {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background-color: #ecc5a0;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.header-color {
+    background-color: #422617;
+}
+
+.custom-text {
+    color: #f8bf88; 
+    font-weight: bold;
+
+}
+.custom-text:hover {
+    color: #c08a57;
+}
+
+/* Стили для активной ссылки */
+a.active {
+    color: #c08a57 !important;  
+}
+
+  
+/* Кнопка вход */    
+.custom-btn {
+    color: #f8dbbf; /* Цвет текста */
+    background-color: #6a4b3a; /* Цвет фона */
+    border: 2px solid #f8dbbf; /* Цвет рамки */
+    padding: 8px 16px; /* Внутренние отступы */
+    border-radius: 8px; /* Закругление углов */
+    transition: all 0.3s ease-in-out; /* Анимация */
+}
+
+    .custom-btn:hover {
+        background-color: #f8dbbf; /* Меняется фон */
+        color: #6a4b3a; /* Меняется цвет текста */
+    }
+
+/* Стили чтобы лого убегало */
+.navbar-brand {
+    position: relative;
+    display: inline-block;
+    transition: transform 0.2s ease; /* Плавное перемещение */
+}
+
+#logo {
+    transition: transform 0.2s ease;
+}
+
+
+
+.nav-btn {
+    font-size: 17px;
+    background: transparent;
+    border: none;
+    padding: 1em 1.5em;
+    color: #f8dbbf;
+    text-transform: uppercase;
+    position: relative;
+    transition: 0.5s ease;
+    cursor: pointer;
+}
+
+    .nav-btn::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 0;
+        background-color: #6a4b3a;
+        transition: 0.5s ease;
+    }
+
+    .nav-btn:hover {
+        color: #c08a57;
+        transition-delay: 0.5s;
+    }
+
+        .nav-btn:hover::before {
+            width: 100%;
+        }
+
+    .nav-btn::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 0;
+        width: 100%;
+        background-color: #6a4b3a;
+        transition: 0.4s ease;
+        z-index: -1;
+    }
+
+    .nav-btn:hover::after {
+        height: 100%;
+        transition-delay: 0.4s;
+        color: aliceblue;
+    }
+
+ /* анимация загрузки */
+
+#preloader {
+    position: fixed;
+    width: 100%;
+    height: calc(100vh - 106px);
+    background-color: #422617;
+    top: 106px;
+    left: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.4s ease-in-out;
+} 
+
+    /* Скрытие прелоадера */
+    .hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Анимация прелоадера */
+.wrapper {
+    width: 200px;
+    height: 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    border-radius: 50%;
+    background-color: #f8dbbf;
+    left: 15%;
+    transform-origin: 50%;
+    animation: circle7124 .5s alternate infinite ease;
+}
+
+@keyframes circle7124 {
+    0% {
+        top: 60px;
+        height: 5px;
+        border-radius: 50px 50px 25px 25px;
+        transform: scaleX(1.7);
+    }
+
+    40% {
+        height: 20px;
+        border-radius: 50%;
+        transform: scaleX(1);
+    }
+
+    100% {
+        top: 0%;
+    }
+}
+
+.circle:nth-child(2) {
+    left: 45%;
+    animation-delay: .2s;
+}
+
+.circle:nth-child(3) {
+    left: auto;
+    right: 15%;
+    animation-delay: .3s;
+}
+
+.shadow {
+    width: 20px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,0.9);
+    position: absolute;
+    top: 62px;
+    transform-origin: 50%;
+    z-index: -1;
+    left: 15%;
+    filter: blur(1px);
+    animation: shadow046 .5s alternate infinite ease;
+}
+
+@keyframes shadow046 {
+    0% {
+        transform: scaleX(1.5);
+    }
+
+    40% {
+        transform: scaleX(1);
+        opacity: .7;
+    }
+
+    100% {
+        transform: scaleX(.2);
+        opacity: .4;
+    }
+}
+
+.shadow:nth-child(4) {
+    left: 45%;
+    animation-delay: .2s;
+}
+
+.shadow:nth-child(5) {
+    left: auto;
+    right: 15%;
+    animation-delay: .3s;
+}
