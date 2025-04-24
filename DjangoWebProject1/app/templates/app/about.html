@@ -1,0 +1,28 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+{% load static %}
+<div class="figure">
+    <h1>О РЕЦЕПТОМАНИИ</h1>
+    <p>Теперь это ваш кулинарный помощник! Здесь вы найдете тысячи проверенных рецептов на любой вкус: от быстрых завтраков до изысканных ужинов. Наши рецепты сопровождаются пошаговыми инструкциями, аппетитными фотографиями и полезными советами, чтобы даже начинающие кулинары смогли создать кулинарный шедевр!</p>
+</div>
+
+
+
+<div class="tiles-container">
+    <div class="tile">
+        <img src="{% static 'app/content/lupa.png' %}" class="icon">
+        <p>Удобный поиск по ингредиентам и категориям</p>
+    </div>
+    <div class="tile">
+        <img src="{% static 'app/content/zacladka.png' %}" class="icon">
+        <p>Полезные лайфхаки и кулинарные статьи</p>
+    </div>
+    <div class="tile">
+        <img src="{% static 'app/content/coment.png' %}" class="icon">
+        <p>Возможность сохранять любимые рецепты и делиться ими с друзьями</p>
+    </div>
+</div>
+
+{% endblock %}
+

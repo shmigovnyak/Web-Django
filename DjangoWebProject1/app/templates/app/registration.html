@@ -1,0 +1,45 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h2>Регистрация пользователя</h2>
+<div id="registration-container">
+    
+
+    <form class="registration-form" method="POST">
+        {% csrf_token %}
+
+        <!-- Поля формы -->
+        <div class="form-group">
+            <label for="id_username">Имя пользователя</label>
+            {{ regform.username }} <!-- Выводим поле username -->
+        </div>
+
+        <div class="form-group">
+            <label for="id_password1">Пароль</label>
+            {{ regform.password1 }} <!-- Выводим поле для пароля -->
+        </div>
+
+        <div class="form-group">
+            <label for="id_password2">Подтвердите пароль</label>
+            {{ regform.password2 }} <!-- Выводим поле для подтверждения пароля -->
+        </div>
+
+
+
+        <!-- Если форма содержит ошибки, выводим их -->
+        {% if regform.errors %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for field in regform %}
+                {% for error in field.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <button type="submit" class="save btn custom-btn"> Зарегистрировать </button>
+    </form>
+</div>
+{% endblock %}

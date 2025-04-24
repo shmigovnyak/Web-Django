@@ -1,0 +1,120 @@
+{% extends "app/layout.html" %}
+{% block content %}
+
+<body class="feedback">
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items:center">
+        <h2>Оставьте ваш отзыв</h2>
+        <div id="feedback-container">
+            <form id="feedback-form" method="post" style="height:100%; width:100%; display: flex; flex-direction: column; justify-content: space-around; align-items:flex-start">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button id="submit-btn" type="submit" class="custom-btn">Отправить</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("feedback-form");
+        const title = document.querySelector("h2"); // Заголовок "Оставьте ваш отзыв"
+        const inputs = document.querySelectorAll("input, textarea");
+        const container = document.getElementById("feedback-container");
+        const originalFormHTML = container.innerHTML; // Сохраняем изначальный HTML формы
+
+        // Функция обработки отправки формы
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // Предотвращаем стандартное отправление формы
+            console.log("Форма отправляется...");
+
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest",
+                    "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Ответ сервера:", data);
+
+                    if (data.success) {
+                        // Скрываем заголовок
+                        title.style.display = "none";
+
+                        // Формируем HTML для блока "Спасибо за отзыв!" + кнопка "Назад"
+                        const thankYouHTML = `
+                        <div id="thank-you">
+                            <h3>Спасибо за ваш отзыв!</h3>
+                            <ul>
+                                <li><strong>Имя:</strong> ${data.name}</li>
+                                <li><strong>Email:</strong> ${data.email}</li>
+                                <li><strong>Оценка:</strong> ${data.rating}</li>
+                                <li><strong>Понравилось:</strong> ${data.liked_features.join(", ")}</li>
+                                <li><strong>Пожелания:</strong> ${data.suggestions}</li>
+                            </ul>
+                            <button id="back-btn" class="custom-btn">Оставить ещё один отзыв</button>
+                        </div>
+                    `;
+
+                        // Заменяем форму новым блоком
+                        container.innerHTML = thankYouHTML;
+
+                        // Вешаем обработчик на кнопку "Назад"
+                        document.getElementById("back-btn").addEventListener("click", function () {
+                            title.style.display = "block"; // Показываем заголовок снова
+                            container.innerHTML = originalFormHTML; // Восстанавливаем форму
+                            addFormEventListener(); // Повторно привязываем обработчик отправки
+                        });
+                    } else {
+                        console.error("Ошибка:", data.errors);
+                    }
+                })
+                .catch(error => console.error("Ошибка сети:", error));
+        });
+
+        // Функция для повторного добавления обработчика на форму после возврата
+        function addFormEventListener() {
+            document.getElementById("feedback-form").addEventListener("submit", function (event) {
+                event.preventDefault();
+                console.log("Форма отправляется снова...");
+            });
+        }
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const inputs = document.querySelectorAll("input, textarea");
+
+        inputs.forEach(input => {
+            // Если в поле что-то есть — добавляем класс "filled"
+            input.addEventListener("input", function () {
+                if (this.value.trim() !== "") {
+                    this.classList.add("filled");
+                } else {
+                    this.classList.remove("filled");
+                }
+            });
+
+            // Проверка на ошибки (пример: пустое поле после фокуса)
+            input.addEventListener("blur", function () {
+                if (this.value.trim() === "") {
+                    this.classList.remove("filled");
+                    this.classList.add("error");
+                    setTimeout(() => this.classList.remove("error"), 1000); // Ошибка исчезает через 1 сек
+                }
+            });
+
+            // При фокусе убираем ошибку
+            input.addEventListener("focus", function () {
+                this.classList.remove("error");
+            });
+        });
+    });
+</script>
+
+{% endblock %}

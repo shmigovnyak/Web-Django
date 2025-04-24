@@ -1,0 +1,28 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h2 style="margin-bottom: 20px"> Рецепты </h2>
+   {% if user.is_superuser %}
+        <p><a href="{% url 'newpost' %}" class="btn custom-btn">Добавить новый рецепт</a></p>
+   {% endif %}
+
+{% for post in posts %}
+
+<div class="blog-post-tile">
+    <!-- Картинка слева от текста -->
+    {% if post.image %}
+    <div class="blog-image">
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="blog-post-image">
+    </div>
+    {% endif %}
+
+    <div class="blog-text">
+        <h3>{{ post.title }} </h3>
+        <h5>{{ post.posted|date:"d M Y" }}</h5>
+        <p>{{ post.description }}  </p>
+        <h5>Автор: {{ post.author.username }}</h5>
+        <p><a href="{% url 'blogpost' parametr=post.id %}">Читать далее</a></p>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

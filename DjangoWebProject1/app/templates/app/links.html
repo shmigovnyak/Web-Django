@@ -1,0 +1,35 @@
+{% extends "app/layout.html" %}
+{% block content %}
+{% load static %}
+
+<div class="figure">
+    <h1>Полезные ссылки</h1>
+    <p>В этом разделе собраны тщательно отобранные ресурсы, которые вдохновляют нас каждый день. Хотите узнать больше о великих поварах, открыть для себя лучшие рестораны или быстро заказать продукты домой? Мы собрали всё самое вкусное — кликайте на иконки и открывайте кулинарный мир вместе с Рецептоманией!</p>
+</div>
+
+<div class="tiles-container">
+    
+    <div class="tile">
+        <a href="https://dzen.ru/a/YJ9ofRBtww5Uzq2a" target="_blank">
+            <img src="{% static 'app/content/kolpak.png' %}" class="icon" />
+        </a>
+        <p>32 самых известных повара мира</p>
+    </div>
+    <div class="tile">
+        <a href="https://dzen.ru/a/YJ9ofRBtww5Uzq2a" target="_blank">
+            <img src="{% static 'app/content/eda.png' %}" class="icon" />
+        </a>
+        <p>Псков: лучшие рестораны</p>
+    </div>
+    <div class="tile">
+        <a href="https://dzen.ru/a/YJ9ofRBtww5Uzq2a" target="_blank">
+            <img src="{% static 'app/content/dostavka.png' %}" class="icon" />
+        </a>
+        <p>Доставка еды и продуктов от 30 минут</p>
+    </div>
+</div>
+
+
+
+  
+{% endblock %}

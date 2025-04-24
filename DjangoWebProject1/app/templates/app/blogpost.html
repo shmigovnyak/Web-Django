@@ -1,0 +1,62 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h2>{{ post.title }}</h2>
+<h5>{{ post.posted|date:"d M Y" }}</h5>
+
+<div class="parent">
+    <!-- Блок 1: Текст поста -->
+    <div class="div1">
+        <div class="post-text-tile">
+            <p>{{ post.content|linebreaksbr }}</p>
+        </div>
+    </div>
+
+    <!-- Блок 2: Объединённый контент (картинка, форма и комментарии) -->
+    <div class="div2">
+        <div class="post-image-tile">
+            {% if post.image %}
+            <div class="post-image">
+                <img src="{{ post.image.url }}" alt="{{ post.title }}">
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="add-comment-tile">
+            {% if user.is_authenticated %}
+            <h3>Добавить комментарий</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <div>
+                    {{ form.as_p }}
+                    <button type="submit" class="save btn custom-btn">Отправить</button>
+                </div>
+            </form>
+            {% else %}
+            <h3>Для добавления комментария, пожалуйста, авторизуйтесь</h3>
+            {% endif %}
+        </div>
+
+        <div class="comments-tile">
+            
+            <div class="comments-list">
+                {% for comment in comments %}
+                <div class="comment">
+                    <div class="comment-header">
+                        <h5>{{ comment.author.username }}</h5>
+                        <span>{{ comment.date|date:"d M Y H:i" }}</span>
+                    </div>
+                    <p>{{ comment.text|linebreaksbr }}</p>
+                </div>
+                <hr />
+                {% empty %}
+                <p>Комментариев нет.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<p><a href="{% url 'blog' %}" class="btn custom-btn mt-3">Назад</a></p>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+{% load static %}
+
+
+
+<style>
+    body {
+        margin-top: 0px;
+        padding: 0;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+    }
+
+    .container {
+        max-width: 600px;
+        padding: 20px;
+        background: #FFF0E2;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        text-align: center;
+        border: 5px solid #422617;
+    }
+
+    .author-photo {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 20px 0;
+    }
+
+    p {
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    .social-links {
+        margin-top: 20px;
+    }
+
+        .social-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #422617;
+            font-size: 20px;
+            position: relative;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+            .social-links a::after {
+                content: "";
+                position: absolute;
+                bottom: -2px;
+                left: 50%;
+                width: 0;
+                height: 2px;
+                background-color: #422617;
+                transition: width 0.3s ease-in-out;
+                transform: translateX(-50%);
+            }
+
+            .social-links a:hover::after {
+                width: 70%; /* Подчеркивание растягивается не на все слово */
+            }
+</style>
+
+<body>
+    
+    <div class="container">
+        <h2>Об авторе</h2>
+        <img src="{% static 'app/content/avatar.jpg' %}" alt="Фото автора" class="author-photo">
+        <p>Привет! Меня зовут Анастасия, и я создатель блога "Рецептомания". Готовка — моя страсть, и я с радостью делюсь любимыми рецептами, советами и секретами вкусных блюд!</p>
+        <p>Здесь вы найдете проверенные рецепты для любого случая: от быстрых завтраков до изысканных ужинов.</p>
+        <div class="social-links">
+            <a href="https://vk.com/bartobass">Vk</a>
+            <a href="https://www.youtube.com/@shmigovnyak">YouTube</a>
+            <a href="https://t.me/shmigovnyak">Telegram</a>
+        </div>
+    </div>
+</body>
+{% endblock %}

@@ -1,0 +1,185 @@
+{% extends "app/layout.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    .carousel-inner {
+        transition: transform 1s ease;
+        border-radius: 25px;
+        overflow: hidden;
+    }
+
+    .carousel-item img {
+        border-radius: 25px;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .carousel-indicators {
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 0;
+    }
+
+        .carousel-indicators li {
+            list-style-type: none;
+        }
+
+    .carousel-inner .carousel-item img {
+        border-radius: 25px;
+    }
+
+    .highlight-section {
+        margin-top: 40px;
+        background-color: #FFF0E2;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        text-align: center;
+    }
+
+        .highlight-section h2 {
+            color: #422617;
+            margin-bottom: 20px;
+        }
+
+        .highlight-section p {
+            font-size: 18px;
+            color: #422617;
+            margin-bottom: 15px;
+        }
+
+        .highlight-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+
+    .popular-recipes-section {
+        background-color: #FFF0E2;
+        padding: 40px;
+        border-radius: 20px;
+        margin-top: 40px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        text-align: center;
+    }
+
+        .popular-recipes-section h2 {
+            color: #422617;
+            margin-bottom: 30px;
+        }
+
+    .recipe-card {
+        display: inline-block;
+        width: 30%;
+        margin: 15px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        text-align: center;
+        padding: 15px;
+    }
+
+        .recipe-card img {
+            width: 100%;
+            border-radius: 10px;
+            height: auto;
+        }
+
+    .recipe-info {
+        margin-top: 15px;
+    }
+
+        .recipe-info h3 {
+            color: #422617;
+            font-size: 20px;
+        }
+
+        .recipe-info p {
+            font-size: 16px;
+            color: #422617;
+            margin-bottom: 10px;
+        }
+</style>
+
+<div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+    <ol class="carousel-indicators">
+        <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+        <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
+    </ol>
+
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'app/content/banner1.jpg' %}" alt="Первый слайд">
+            <div class="carousel-caption">
+                <p></p>
+                <a class="btn custom-btn" href="https://food.ru/recipes/244874-frikadelki-iz-sudaka">Читать далее</a>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'app/content/banner2.jpg' %}" alt="Второй слайд">
+            <div class="carousel-caption">
+                <p></p>
+                <a class="btn custom-btn" href="https://food.ru/recipes/244535-sup-s-fasoliu-i-sosiskami">Читать далее</a>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'app/content/banner3.jpg' %}" alt="Третий слайд">
+            <div class="carousel-caption">
+                <p></p>
+                <a class="btn custom-btn" href="https://food.ru/recipes/244504-lenivye-vareniki-s-tykvoi">Читать далее</a>
+            </div>
+        </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<div class="highlight-section">
+    <h2>Рецепт недели</h2>
+    <p>Каждую неделю мы выбираем одно особенное блюдо, которое покоряет сердца и желудки наших читателей. На этой неделе — <strong>ленивые вареники с тыквой</strong>! Простое, вкусное и ароматное блюдо для всей семьи.</p>
+    <a class="btn custom-btn" href="https://food.ru/recipes/244504-lenivye-vareniki-s-tykvoi">Посмотреть рецепт</a>
+    <img src="{% static 'app/content/vareniki.webp' %}" alt="Рецепт недели">
+</div>
+
+<div class="popular-recipes-section">
+    <h2>Популярные рецепты</h2>
+    <div class="recipe-card">
+        <img src="{% static 'app/content/pesto.webp' %}" alt="Популярный рецепт 1">
+        <div class="recipe-info">
+            <h3>Паста с соусом песто</h3>
+            <p>Идеальный выбор для любителей итальянской кухни. Легкое и ароматное блюдо.</p>
+            <a href="https://food.ru/recipes/188626-pasta-pesto" class="btn custom-btn">Посмотреть рецепт</a>
+        </div>
+    </div>
+
+    <div class="recipe-card">
+        <img src="{% static 'app/content/borsh.webp' %}" alt="Популярный рецепт 2">
+        <div class="recipe-info">
+            <h3>Вегетарианский борщ</h3>
+            <p>Традиционный борщ, который согреет в любую погоду. Сытно и вкусно!</p>
+            <a href="https://food.ru/recipes/197634-sup-ot-mamy" class="btn custom-btn">Посмотреть рецепт</a>
+        </div>
+    </div>
+
+    <div class="recipe-card">
+        <img src="{% static 'app/content/tort.webp' %}" alt="Популярный рецепт 3">
+        <div class="recipe-info">
+            <h3>Шоколадный торт</h3>
+            <p>Необычайно вкусный и нежный торт, который тает во рту. Праздничный десерт.</p>
+            <a href="https://food.ru/recipes/189811-shokoladno-shokoladnyi-tort" class="btn custom-btn">Посмотреть рецепт</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
